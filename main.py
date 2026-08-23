@@ -24,7 +24,8 @@ class MonBot(commands.Bot):
             "cogs.Roles.cog",
             "cogs.Channel.cog",
             "cogs.Moderation.cog",
-            "cogs.Vocal.cog"
+            "cogs.Vocal.cog",
+            "cogs.Ticket.cog"
 
         ]
 
@@ -62,10 +63,12 @@ class MonBot(commands.Bot):
         except Exception:
             logger.exception("Erreur inconnue pendant la synchronisation")
 
+
 bot = MonBot(
     command_prefix="?",
     intents=discord.Intents.all()
 )
+
 
 @bot.event
 async def on_interaction(interaction):
@@ -74,8 +77,6 @@ async def on_interaction(interaction):
 @bot.event
 async def on_ready():
     logger.info("Bot connécter | bot name = %s",bot.user)
-    
 
-        
     
 bot.run(TOKEN)
