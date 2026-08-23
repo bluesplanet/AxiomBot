@@ -1,5 +1,9 @@
 # Axiom
 
+> **Version Prototype**
+
+Axiom est un projet modulaire visant à regrouper différents outils, services et intégrations sur plusieurs plateformes.
+
 Axiom est un projet modulaire visant à regrouper différents outils, services et intégrations sur plusieurs plateformes.
 
 ## AxiomBot
