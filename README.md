@@ -4,8 +4,6 @@
 
 Axiom est un projet modulaire visant à regrouper différents outils, services et intégrations sur plusieurs plateformes.
 
-Axiom est un projet modulaire visant à regrouper différents outils, services et intégrations sur plusieurs plateformes.
-
 ## AxiomBot
 
 AxiomBot est actuellement disponible sur Discord et propose notamment :
