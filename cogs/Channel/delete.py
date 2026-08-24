@@ -1,5 +1,5 @@
 import discord
-from .utils.send import send_message
+from utils.send import  send_message
 from config import Colors,Durations
 import logging
 
@@ -29,7 +29,9 @@ async def supprimer_salon(ctx,salon: discord.TextChannel):
     """
 
     try:
-        logger.warning("Entre ➡️✅")
+
+        logger.warning("✅ Entrée ")
+        
         mon_salon = salon.name
 
         await salon.delete()

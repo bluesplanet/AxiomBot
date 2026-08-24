@@ -2,7 +2,7 @@ import discord
 import logging
 from datetime import timedelta
 from config import Colors,Durations
-from .utils.send import send_message
+from utils.send import  send_message
 
 
 

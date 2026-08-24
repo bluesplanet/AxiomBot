@@ -1,5 +1,5 @@
 import discord
-from .utils.send import send_message
+from utils.send import  send_message
 from config import Colors,Durations
 from services.Rechercher.search.role_intelligent_search import chercher_role_intelligent
 import logging
@@ -34,6 +34,8 @@ async def salon_config_acces(ctx,channel,role):
     """
 
     try:
+
+        logger.warning("✅ Entrée ")
                 
         await channel.set_permissions(
             role,
@@ -88,6 +90,8 @@ async def salon_config_acces_multi(ctx,channel,roles):
     """
     try:
 
+        logger.warning("✅ Entrée ")
+        
         if roles is None:
             message = "Roles = None"
             await send_message(ctx,message,color=Colors.ERROR,temps=Durations.ERROR)

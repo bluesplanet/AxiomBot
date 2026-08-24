@@ -1,6 +1,4 @@
 import discord
-from config import Colors,Durations
-from .utils.send import send_message
 from discord import app_commands
 from discord.ext import commands
 from .creat import creer_salon
@@ -8,6 +6,7 @@ from .delete import supprimer_salon
 from .verrouiller import salon_verrouiller
 from .deverrouiller import salon_deverrouiller
 from .config_acces import salon_config_acces_multi
+from .clear import clear
 
 class Channel(commands.Cog):
     def __init__(self,bot):
@@ -50,6 +49,17 @@ class Channel(commands.Cog):
     @app_commands.describe(channel = "Le salon à configurer.",roles="Les rôles qui auront accès au salon.")
     async def salon_config_acces(self,ctx,channel:discord.TextChannel,roles:str):
         await salon_config_acces_multi(ctx,channel,roles)
+
+
+
+
+    @commands.hybrid_command(name="salon_clear",description="Supprime des messages du salon, avec la possibilité de cibler un membre.")
+    @app_commands.describe(limite="Nombre maximum de messages à supprimer.",membre="Membre dont les messages doivent être supprimés. Optionnel.")
+    async def salon_config_acces(self,ctx,limite : int ,*, membre : discord.Member = None):
+        await clear(ctx,limite,membre)
+
+
+
 
 async def setup(bot):
     await bot.add_cog(Channel(bot))

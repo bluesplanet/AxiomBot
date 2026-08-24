@@ -1,7 +1,7 @@
 import discord
 import logging
 from config import Colors,Durations
-from .utils.send import send_message
+from utils.send import  send_message
 
 
 logger = logging.getLogger(__name__)
@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 async def bannir(ctx,membre,raison):
 
-    logger.warning("➡️✅ Entrée ")
+    logger.warning("✅ Entrée ")
 
     try:
 

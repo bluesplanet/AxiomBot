@@ -1,5 +1,5 @@
 import discord
-from .utils.send import send_message
+from utils.send import  send_message
 from discord import app_commands
 from config import Colors,Durations
 from discord.ext import commands

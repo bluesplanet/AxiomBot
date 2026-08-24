@@ -1,5 +1,5 @@
 import discord
-from .utils.send import send_message
+from utils.send import  send_message
 from config import Colors,Durations
 import logging
 
@@ -41,9 +41,9 @@ async def creer_salon(ctx,nom,categorie,new_categorie):
         La fonction envoie directement un message de résultat.
     """
 
-    logger.warning("✅ Entrée ")
-
     try:
+        
+        logger.warning("✅ Entrée ")
         
         if nom is None:
             message = "Roles = None"

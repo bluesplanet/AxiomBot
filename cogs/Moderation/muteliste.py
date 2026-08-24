@@ -2,7 +2,7 @@ import discord
 import logging
 from .Embed.create_embed_all import Pagination
 from config import Colors,Durations
-from .utils.send import send_message
+from utils.send import  send_message
 
 
 

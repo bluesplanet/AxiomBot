@@ -1,5 +1,5 @@
 import discord
-from .utils.send import send_message
+from utils.send import  send_message
 from config import Durations,Colors
 import logging
 logger = logging.getLogger(__name__)

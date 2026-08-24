@@ -1,6 +1,6 @@
 import discord
 import logging
-from .utils.send import send_message
+from utils.send import  send_message
 from .Data.databasse import update_ticket,get_tiket
 from config import Colors,Durations
 

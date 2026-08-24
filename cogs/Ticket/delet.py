@@ -1,6 +1,6 @@
 import discord
 from .Data.databasse import get_tiket
-from .utils.send import send_message
+from utils.send import  send_message
 from config import Durations,Colors
 from .corbaille import remove_corbaille
 import logging

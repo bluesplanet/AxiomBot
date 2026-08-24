@@ -2,7 +2,7 @@ import discord
 import logging
 import enum
 from textwrap import dedent
-from ..utils.send import send_message
+from utils.send import  send_message
 from .view.create_embed_all import Pagination_permissions
 
 

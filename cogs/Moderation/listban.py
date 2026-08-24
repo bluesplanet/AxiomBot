@@ -1,7 +1,7 @@
 import discord
 import logging
 from config import Colors,Durations
-from .utils.send import send_message
+from utils.send import send_message
 from .Embed.create_embed_all import Pagination
 
 
@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 async def listban(ctx):
 
-    logger.warning("➡️✅ Entrée ")
+    logger.warning("✅ Entrée ")
 
     try:
         

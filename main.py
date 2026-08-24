@@ -20,13 +20,11 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 class MonBot(commands.Bot):
     async def setup_hook(self):
         cogs = [
-            "cogs.Teste",
             "cogs.Roles.cog",
             "cogs.Channel.cog",
             "cogs.Moderation.cog",
             "cogs.Vocal.cog",
             "cogs.Ticket.cog"
-
         ]
 
         logger.info("Nombre de cogs détecter = %s ",len(cogs))

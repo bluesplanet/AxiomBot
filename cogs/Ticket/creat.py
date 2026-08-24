@@ -1,6 +1,6 @@
 import discord
 from .Data.databasse import set_tiket
-from .utils.send import send_message
+from utils.send import  send_message
 from config import Durations,Colors
 from .Data.databasse import get_tiket,update_ticket
 from.corbaille import restor_corbaille
@@ -38,8 +38,11 @@ async def creat(ctx):
     """
 
     try:
-        ancien_channel = True
+
         logger.warning("✅ Entrée ")
+        
+        ancien_channel = True
+        
         liste = get_tiket(ctx.guild.id,ctx.author.id)
         if liste:
             if liste[1] == "corbeille":

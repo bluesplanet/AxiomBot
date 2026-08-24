@@ -1,6 +1,6 @@
 import discord
 from services.Rechercher.convert_type import convert_type
-from .utils.send import send_message
+from utils.send import  send_message
 from services.Rechercher.search.role_intelligent_search import chercher_role_intelligent
 import logging
 from config import Durations,Colors
@@ -37,7 +37,9 @@ async def role_add_one(ctx,membre,role,temps):
     """
 
     try:
-        
+
+        logger.warning("✅ Entrée ")
+
         await membre.add_roles(role)
         logger.info(f"Ajout role {role.name} à {membre.name} par {ctx.author.name} réussi | temps : {temps}") 
         message = f"**Le rôle {role.mention} a été ajouté à {membre.mention}**"
