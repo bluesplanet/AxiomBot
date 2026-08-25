@@ -6,7 +6,8 @@ from config import Durations,Colors
 AXIOM_BLUE = discord.Colour.blue()
 
 
-async def send_message(ctx, message,color = Colors.BOT, temps=None):
+async def send_message(ctx, message,color = Colors.BOT, temps=None,destinataire=None):
+
     """
     Envoie un message sous forme d'Embed.
 
@@ -80,28 +81,34 @@ async def send_message(ctx, message,color = Colors.BOT, temps=None):
     # ---------------------------------------------------------
     # Commande Slash / Hybrid
     # ---------------------------------------------------------
-
-    if ctx.interaction:
-
-        await ctx.send(
+    if destinataire:
+        await destinataire.send(
             embed=embed,
-            ephemeral=True,
             silent=True,
             delete_after=temps
         )
+    else:
+        if ctx.interaction:
+
+            await ctx.send(
+                embed=embed,
+                ephemeral=True,
+                silent=True,
+                delete_after=temps
+            )
 
     # ---------------------------------------------------------
     # Commande préfixée
     # ---------------------------------------------------------
 
-    else:
-        embed.description += (
-            "\n\n"
-            "⚠️ Privilégie les commandes slash (/), "
-            "elles sont recommandées."
-        )
+        else:
+            embed.description += (
+                "\n\n"
+                "⚠️ Privilégie les commandes slash (/), "
+                "elles sont recommandées."
+            )
 
-        await ctx.send(
-            embed=embed,
-            delete_after=temps
-        )
+            await ctx.send(
+                embed=embed,
+                delete_after=temps
+            )

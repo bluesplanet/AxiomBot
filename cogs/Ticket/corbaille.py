@@ -108,6 +108,47 @@ async def remove_corbaille(ctx,channel):
 
 async def restor_corbaille(ctx,channel_id):
 
+    """
+    Restaure un ticket placé dans la corbeille.
+
+    La fonction recherche la catégorie des tickets et la crée si elle
+    n'existe pas. Elle récupère ensuite le salon à partir de son ID,
+    le replace dans la catégorie des tickets et rétablit les permissions
+    permettant à l'auteur de la commande d'accéder au ticket.
+
+    Le statut du ticket est ensuite mis à jour dans la base de données
+    afin de le définir comme actif.
+
+    Args:
+        ctx (commands.Context):
+            Contexte de la commande Discord.
+
+        channel_id (int):
+            Identifiant du salon correspondant au ticket à restaurer.
+
+    Returns:
+        bool:
+            Retourne True lorsque le ticket a été restauré avec succès.
+
+        None:
+            Retourne None si le salon correspondant à l'ID fourni
+            n'existe pas.
+
+    Raises:
+        discord.Forbidden:
+            Si le bot ne possède pas les permissions nécessaires pour
+            créer la catégorie ou modifier le salon.
+
+        discord.NotFound:
+            Si le salon ou une autre ressource demandée est introuvable.
+
+        discord.HTTPException:
+            Si Discord rencontre une erreur lors de la création ou
+            de la modification d'une ressource.
+    """
+
+    logger.warning("✅ Entrée ")
+
     try:
         categorie = discord.utils.get(ctx.guild.categories,name="🎫・TICKETS")
 
@@ -166,8 +207,8 @@ async def restor_corbaille(ctx,channel_id):
 
     except discord.NotFound:
 
-        messages = "Désolé, le membre, le rôle ou la ressource demandée est introuvable."
-        await send_message(ctx, messages, color=Colors.ERROR ,temps = Durations.ERROR)
+        message = "Désolé, le membre, le rôle ou la ressource demandée est introuvable."
+        await send_message(ctx, message, color=Colors.ERROR ,temps = Durations.ERROR)
         logger.error(message)
 
     except Exception:

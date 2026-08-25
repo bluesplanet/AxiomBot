@@ -14,7 +14,7 @@ async def listban(ctx):
 
     try:
         
-        bans = [entry async for entry in ctx.guild.bans()]
+        bans = [entry.user async for entry in ctx.guild.bans()]
         if not bans:
             message = "Liste vide"
             await send_message(
@@ -35,7 +35,7 @@ async def listban(ctx):
         titre_all = titre
 
         view = Pagination(
-            pages=pages,
+                    pages=pages,
             titre=titre,
             titre_all=titre_all
         )

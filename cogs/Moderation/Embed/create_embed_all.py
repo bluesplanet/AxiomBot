@@ -36,15 +36,15 @@ class Pagination(discord.ui.View,):
                 )
                 return embed
             
-            for membre in membres[self.page]:
+            for membre in membres:
                 embed.add_field(
-                    name=f"{membre}",
-                    value="",
+                    name=f"Nom: {membre}",
+                    value=f"ID: {membre.id}",
                     inline=False
                 )
 
             embed.description = dedent(f"""
-                ╭─ Page {self.page + 1}/{len(self.pages["pages"])} ─╮
+                -- Page {self.page + 1}/{len(self.pages["pages"])} --
                 \n\n
             """)
 
@@ -62,9 +62,13 @@ class Pagination(discord.ui.View,):
 
          
         if self.pages["type"] == "membre":
+            membre_nom = []
+            for membre_n in self.pages["pages"]:
+                membre_nom.append(membre_n)
+
             embed = discord.Embed(
                 title = self.titre_all,
-                description="\n\n".join(self.pages["pages_all"]),
+                description="\n\n".join(membre_nom),
                 colour=AXIOM_BLUE
             ) 
             

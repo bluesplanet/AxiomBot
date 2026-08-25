@@ -3,6 +3,8 @@ from utils.send import  send_message
 from discord import app_commands
 from config import Colors,Durations
 from discord.ext import commands
+from .add import add_ticket
+from .remove import remove_ticket
 from .creat import creat
 from .delet import delet_staff , delet_utilisateur
 
@@ -16,6 +18,7 @@ class Ticket(commands.Cog):
 
 
 
+
     @commands.hybrid_command(name="ticket_creat",description="Créer un ticket privé.")
     async def ticket(self, ctx):
         if ctx.author.guild_permissions.administrator:
@@ -24,6 +27,7 @@ class Ticket(commands.Cog):
             return
         await creat(ctx)
         
+
 
 
     @commands.hybrid_command(name="ticket_fermer",description="Fermer et supprimer le ticket actuel.")
@@ -45,6 +49,24 @@ class Ticket(commands.Cog):
             return
 
         await delet_utilisateur(ctx)    
+
+
+
+
+    @commands.hybrid_command(name="ticket_add",description="Ajoute un membre à un ticket.")
+    @app_commands.describe(channel="Le ticket à modifier",membre="Le membre à ajouter au ticket")
+    async def ticket_add(self,ctx,channel: discord.TextChannel,membre: discord.Member):
+        add_ticket(ctx,membre,channel)
+
+
+
+
+    @commands.hybrid_command(name="ticket_remove",description="Retire un membre d'un ticket.")
+    @app_commands.describe(channel="Le ticket à modifier",membre="Le membre à ajouter au ticket")
+    async def ticket_remove(self,ctx,channel: discord.TextChannel,membre: discord.Member):
+        remove_ticket(ctx,membre,channel)
+
+
 
 
 async def setup(bot):

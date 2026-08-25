@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
+from utils.send import send_message
+from config import Colors,Durations
 from .kick import expulser
 from .bannir import bannir
 from .debannir import debannir
@@ -8,6 +10,8 @@ from .listban import listban
 from .mute import mute
 from .unmute import unmute
 from .muteliste import muteliste
+from .warm import execut_warn
+
 
 
 class Moderations(commands.Cog):
@@ -62,7 +66,18 @@ class Moderations(commands.Cog):
 
     @commands.hybrid_command(name="membre_muteliste",description="La liste des persone Mute")
     async def muteliste(self,ctx):
-        muteliste(ctx)
+        await muteliste(ctx)
+
+
+    @commands.hybrid_command(name="membre_warn",description="Avertit un membre du serveur.")
+    @app_commands.describe(membre="Le membre à Warm",raison="La raisson du warme")
+    async def warn(self,ctx,membre: discord.Member,raison: str = "Aucune raison fournie"):
+        try:
+            print(membre)
+            await execut_warn(ctx,membre=membre,raison=raison)
+        except:
+            message = "Si tu tombe sur ca c'est qu'il ne plus dans le serveur mais que ton serveur na pas encore enregistre la modification"
+            await send_message(ctx,message,color=Colors.ERROR,temps=Durations.ERROR)
 
 
 async def setup(bot):
