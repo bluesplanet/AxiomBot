@@ -6,8 +6,6 @@ DB_DIR = Path(__file__).resolve().parent / "database"
 DB_DIR.mkdir(parents=True, exist_ok=True)
 
 DB_PATH = DB_DIR / "tiket.db"
-conn = sqlite3.connect(DB_PATH)
-cursor = conn.cursor()
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,7 @@
 import discord
 from utils.send import  send_message
 from config import Colors,Durations
-from services.Rechercher.search.role_intelligent_search import chercher_role_intelligent
+from ...services.Rechercher.search.role_intelligent_search import chercher_role_intelligent
 import logging
 
 

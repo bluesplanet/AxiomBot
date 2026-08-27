@@ -1,7 +1,7 @@
 import discord
-from services.Rechercher.convert_type import convert_type
+from ...services.Rechercher.convert_type import convert_type
 from utils.send import  send_message
-from services.Rechercher.search.role_intelligent_search import chercher_role_intelligent
+from ...services.Rechercher.search.role_intelligent_search import chercher_role_intelligent
 from config import Colors,Durations
 
 import logging
