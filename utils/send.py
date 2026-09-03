@@ -1,12 +1,13 @@
 import discord
 from textwrap import dedent
-from config import Durations,Colors
+from config import Duration,Color
+from data.config import get_config
 
 
 AXIOM_BLUE = discord.Colour.blue()
 
 
-async def send_message(ctx, message,color = Colors.BOT, temps=None,destinataire=None):
+async def send_message(ctx, message,type = None ,destinataire=None):
 
     """
     Envoie un message sous forme d'Embed.
@@ -69,8 +70,27 @@ async def send_message(ctx, message,color = Colors.BOT, temps=None,destinataire=
     où cette fonction est déjà utilisée.
     """
 
-    # Supprime les indentations inutiles du texte.
+    config = get_config(ctx.guild.id)
+    
+    if config is None:
+        await ctx.send("La configuration de ce serveur n'est pas disponible.")
+        return
+        
+    colors = None
+    temps = None
+
+
+    if type is not None:    
+        colors = Color(config,type)
+        duratations = Duration(config,type)
+
+        color = colors.VALUES
+        temps = duratations.VALUES
+
+
+
     message = dedent(message)
+
 
     # Création de l'Embed.
     embed = discord.Embed(

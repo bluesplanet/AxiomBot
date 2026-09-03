@@ -2,7 +2,7 @@ import discord
 import logging
 from utils.send import  send_message
 from .Data.databasse import update_ticket,get_tiket
-from config import Colors,Durations
+from config import Type
 
 
 
@@ -71,35 +71,35 @@ async def remove_corbaille(ctx,channel):
         verification =  get_tiket(ctx.guild.id,channel_id=channel.id)
         if verification[1] == "corbeille":
             message =  "🗑️ Le ticket est déjà dans la corbeille."
-            await send_message(ctx,message,color=Colors.ERROR,temps=Durations.ERROR)
+            await send_message(ctx,message,type=Type.ERROR)
             return
 
         update_ticket(ctx.guild.id, channel_id = channel.id, status = "corbeille")
 
         message = "🗑️ Le ticket a été déplacé dans la corbeille"
-        await send_message(ctx,message,color=Colors.SUCCESS,temps=Durations.SUCCESS)
+        await send_message(ctx,message,type=Type.SUCCESS)
 
     except discord.Forbidden:
                         
         message = "Désolé, je n'ai pas les permissions nécessaires pour effectuer cette action."
-        await send_message(ctx,message,color=Colors.ERROR , temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.HTTPException:
 
         message = "Discord a rencontré une erreur."
-        await send_message(ctx,message,color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.NotFound:
 
         messages = "Désolé, le membre, le rôle ou la ressource demandée est introuvable."
-        await send_message(ctx, messages, color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx, messages, type=Type.ERROR)
         logger.error(message)
 
     except Exception:
             message = "Erreur inattendue"
-            await send_message(ctx,message,color=Colors.WARNING,temps = Durations.WARNING)
+            await send_message(ctx,message,type=Type.WARNING)
             logger.exception(message)
     
 
@@ -186,7 +186,7 @@ async def restor_corbaille(ctx,channel_id):
                 f"Tu peux de nouveau y accéder."
             )
 
-            await send_message(ctx,message,color=Colors.SUCCESS,temps=Durations.SUCCESS)
+            await send_message(ctx,message,type=Type.SUCCESS)
 
             return True
         else:
@@ -196,24 +196,24 @@ async def restor_corbaille(ctx,channel_id):
     except discord.Forbidden:
                     
         message = "Désolé, je n'ai pas les permissions nécessaires pour effectuer cette action."
-        await send_message(ctx,message,color=Colors.ERROR , temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.HTTPException:
 
         message = "Discord a rencontré une erreur."
-        await send_message(ctx,message,color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.NotFound:
 
         message = "Désolé, le membre, le rôle ou la ressource demandée est introuvable."
-        await send_message(ctx, message, color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx, message, type=Type.ERROR)
         logger.error(message)
 
     except Exception:
             message = "Erreur inattendue"
-            await send_message(ctx,message,color=Colors.WARNING,temps = Durations.WARNING)
+            await send_message(ctx,message,type=Type.WARNING)
             logger.exception(message)
 
 

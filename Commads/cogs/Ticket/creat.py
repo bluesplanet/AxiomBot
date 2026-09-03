@@ -1,7 +1,7 @@
 import discord
 from .Data.databasse import set_tiket
 from utils.send import  send_message
-from config import Durations,Colors
+from config import Type
 from .Data.databasse import get_tiket,update_ticket
 from.corbaille import restor_corbaille
 import logging
@@ -93,7 +93,7 @@ async def creat(ctx):
                 f"Un nouveau ticket a été créé automatiquement ici "
                 f"👉 {salon.mention}"
             )
-            await send_message(ctx,message,color=Colors.SUCCESS,temps=Durations.SUCCESS)
+            await send_message(ctx,message,type=Type.SUCCESS)
             return
 
 
@@ -115,29 +115,29 @@ async def creat(ctx):
             return
         
         message = f"🎫 Ton ticket a bien été créé ici :\n\n👉 {salon.mention}"
-        await send_message(ctx,message,color=Colors.SUCCESS,temps=Durations.SUCCESS)
+        await send_message(ctx,message,type=Type.SUCCESS)
 
     except discord.Forbidden:
                     
         message = "Désolé, je n'ai pas les permissions nécessaires pour effectuer cette action."
-        await send_message(ctx,message,color=Colors.ERROR , temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.HTTPException:
 
         message = "Discord a rencontré une erreur."
-        await send_message(ctx,message,color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.NotFound:
 
         messages = "Désolé, le membre, le rôle ou la ressource demandée est introuvable."
-        await send_message(ctx, messages, color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx, messages, type=Type.ERROR)
         logger.error(message)
 
     except Exception:
             message = "Erreur inattendue"
-            await send_message(ctx,message,color=Colors.WARNING,temps = Durations.WARNING)
+            await send_message(ctx,message,type=Type.WARNING)
             logger.exception(message)
 
 

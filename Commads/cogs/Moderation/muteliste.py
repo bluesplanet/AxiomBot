@@ -1,7 +1,7 @@
 import discord
 import logging
 from .Embed.create_embed_all import Pagination
-from config import Colors,Durations
+from config import Type
 from utils.send import  send_message
 
 
@@ -43,7 +43,7 @@ async def muteliste(ctx):
         if nombre == 0:
 
             message = "Aucun membre n'est actuellement en timeout."
-            await send_message(ctx,message,color=Colors.ERROR,temps=Durations.ERROR)
+            await send_message(ctx,message,type=Type.ERROR)
 
             return
 
@@ -68,30 +68,30 @@ async def muteliste(ctx):
         await ctx.send(
             embed = view.create_embed(),
             view = view,
-            delete_after = Durations.SUCCESS_EMBED
+            delete_after = 30
         )
 
 
     except discord.Forbidden:
                                        
         message = "Désolé, je n'ai pas les permissions nécessaires pour effectuer cette action."
-        await send_message(ctx,message,color=Colors.ERROR , temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.HTTPException:
 
         message = "Discord a rencontré une erreur."
-        await send_message(ctx,message,color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.NotFound:
 
         message = "Désolé, le membre, le rôle ou la ressource demandée est introuvable."
-        await send_message(ctx, message, color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx, message, type=Type.ERROR)
         logger.error(message)
 
     except Exception:
 
         message = "Erreur inattendue"
-        await send_message(ctx,message,color=Colors.WARNING,temps = Durations.WARNING)
+        await send_message(ctx,message,type=Type.WARNING)
         logger.exception(message)

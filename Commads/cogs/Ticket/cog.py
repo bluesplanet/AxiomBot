@@ -1,7 +1,7 @@
 import discord
 from utils.send import  send_message
 from discord import app_commands
-from config import Colors,Durations
+from config import Type
 from discord.ext import commands
 from .add import add_ticket
 from .remove import remove_ticket
@@ -23,7 +23,7 @@ class Ticket(commands.Cog):
     async def ticket(self, ctx):
         if ctx.author.guild_permissions.administrator:
             message = "Tu est un Admin , tu ne peux (Théoriquement) pas crée de Ticket"
-            await send_message(ctx,message,color=Colors.ERROR,temps=Durations.ERROR)
+            await send_message(ctx,message,type=Type.ERROR)
             return
         await creat(ctx)
         

@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from utils.send import send_message
-from config import Colors,Durations
+from config import Type
 from .kick import expulser
 from .bannir import bannir
 from .debannir import debannir
@@ -77,7 +77,7 @@ class Moderations(commands.Cog):
             await execut_warn(ctx,membre=membre,raison=raison)
         except:
             message = "Si tu tombe sur ca c'est qu'il ne plus dans le serveur mais que ton serveur na pas encore enregistre la modification"
-            await send_message(ctx,message,color=Colors.ERROR,temps=Durations.ERROR)
+            await send_message(ctx,message,type=Type.ERROR)
 
 
 async def setup(bot):

@@ -1,6 +1,6 @@
 import discord
 from utils.send import  send_message
-from config import Colors,Durations
+from config import Type
 import logging
 
 
@@ -43,10 +43,11 @@ None
     try:
 
         logger.warning("✅ Entrée ")
+        await ctx.defer()
 
         if limite <= 0:
             message = f"Le nombre de messages doit être supérieur à 0."
-            await send_message(ctx,message,color=Colors.ERROR,temps=Durations.ERROR)
+            await send_message(ctx,message,type=Type.ERROR)
             return
         
         if membre is not None:
@@ -55,33 +56,33 @@ None
                 f"🧹 **{len(deleted)} message(s) supprimé(s)** "
                 f"de {membre.mention}."
             )
-            await send_message(ctx,message,color=Colors.SUCCESS,temps=Durations.SUCCESS)
+            await send_message(ctx,message,type=Type.SUCCESS)
             return
         
         deleted = await ctx.channel.purge(limit=limite)
         message = f"🧹 {len(deleted)} message(s) supprimé(s)."
-        await send_message(ctx,message,color=Colors.SUCCESS,temps=Durations.SUCCESS)
+        await send_message(ctx,message,type=Type.SUCCESS)
 
     except discord.Forbidden:
                         
         message = "Désolé, je n'ai pas les permissions nécessaires pour effectuer cette action."
-        await send_message(ctx,message,color=Colors.ERROR , temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.HTTPException:
 
         message = "Discord a rencontré une erreur."
-        await send_message(ctx,message,color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.NotFound:
 
         message = "Désolé, le membre, le rôle ou la ressource demandée est introuvable."
-        await send_message(ctx, message, color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx, message, type=Type.ERROR)
         logger.error(message)
 
     except Exception:
 
         message = "Erreur inattendue"
-        await send_message(ctx,message,color=Colors.WARNING,temps = Durations.WARNING)
+        await send_message(ctx,message,type=Type.WARNING)
         logger.exception(message)

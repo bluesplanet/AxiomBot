@@ -1,6 +1,6 @@
 import discord
 import logging
-from config import Colors,Durations
+from config import Type
 from utils.send import  send_message
 from .Data.databasse import set_warm
 
@@ -63,13 +63,13 @@ async def execut_warn(ctx, membre, raison):
                     f"Vous avez atteint **3 avertissements**.\n"
                     f"**Dernière raison :** {raison}\n\n"
                 )
-                await send_message(ctx,message,color=Colors.SUCCESS,temps=Durations.SUCCESS,destinataire=membre)
+                await send_message(ctx,message,type=Type.SUCCESS,destinataire=membre)
 
                 message = (
                 f"**{membre.name}** a été banni via AxiomBot.\n"
                 f"**Raison :** 3 avertissements atteints.\n"
                 )
-                await send_message(ctx,message,color=Colors.SUCCESS,temps=Durations.SUCCESS)
+                await send_message(ctx,message,type=Type.SUCCESS)
                 
             except discord.Forbidden:
                 logger.warning(
@@ -91,10 +91,10 @@ async def execut_warn(ctx, membre, raison):
                 f"**Raison :** {raison}\n\n"
                 f"3 avertissements entraînent un bannissement."
             )
-            await send_message(ctx,message,color=Colors.SUCCESS,temps=Durations.SUCCESS,destinataire=membre)
+            await send_message(ctx,message,type=Type.SUCCESS,destinataire=membre)
 
             message = f"**{membre.name}** a été averti via AxiomBot.\n"
-            await send_message(ctx,message,color=Colors.SUCCESS,temps=Durations.SUCCESS)
+            await send_message(ctx,message,type=Type.SUCCESS)
 
         except discord.Forbidden:
             logger.warning(
@@ -105,23 +105,23 @@ async def execut_warn(ctx, membre, raison):
     except discord.Forbidden:
                            
         message = "Désolé, je n'ai pas les permissions nécessaires pour effectuer cette action."
-        await send_message(ctx,message,color=Colors.ERROR , temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.HTTPException:
 
         message = "Discord a rencontré une erreur."
-        await send_message(ctx,message,color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.NotFound:
 
         message = "Désolé, le membre, le rôle ou la ressource demandée est introuvable."
-        await send_message(ctx, message, color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx, message, type=Type.ERROR)
         logger.error(message)
 
     except Exception:
 
         message = "Erreur inattendue"
-        await send_message(ctx,message,color=Colors.WARNING,temps = Durations.WARNING)
+        await send_message(ctx,message,type=Type.WARNING)
         logger.exception(message)

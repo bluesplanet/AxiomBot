@@ -1,7 +1,7 @@
 import discord
 import logging
 from datetime import timedelta
-from config import Colors,Durations
+from config import Type
 from utils.send import  send_message
 
 
@@ -18,7 +18,7 @@ async def mute(ctx,membre,raison ,heure, minute):
 
         if heure == 0 and minute == 0:
             message = "Tu dois mettre une durée supérieure à 0."
-            await send_message(ctx,message,color=Colors.ERROR,temps=Durations.ERROR)
+            await send_message(ctx,message,type=Type.ERROR)
             return
 
         
@@ -30,7 +30,7 @@ async def mute(ctx,membre,raison ,heure, minute):
 
         if duree.total_seconds() > 28 * 24 * 60 * 60:
             message = f"La durée maximale est de 28 jours."
-            await send_message(ctx,message,color=Colors.ERROR,temps=Durations.ERROR)
+            await send_message(ctx,message,type=Type.ERROR)
             return
 
     
@@ -46,23 +46,23 @@ async def mute(ctx,membre,raison ,heure, minute):
     except discord.Forbidden:
                                
         message = "Désolé, je n'ai pas les permissions nécessaires pour effectuer cette action."
-        await send_message(ctx,message,color=Colors.ERROR , temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.HTTPException:
 
         message = "Discord a rencontré une erreur."
-        await send_message(ctx,message,color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.NotFound:
 
         message = "Désolé, le membre, le rôle ou la ressource demandée est introuvable."
-        await send_message(ctx, message, color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx, message, type=Type.ERROR)
         logger.error(message)
 
     except Exception:
 
         message = "Erreur inattendue"
-        await send_message(ctx,message,color=Colors.WARNING,temps = Durations.WARNING)
+        await send_message(ctx,message,type=Type.WARNING)
         logger.exception(message)

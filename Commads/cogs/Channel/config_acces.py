@@ -1,6 +1,6 @@
 import discord
 from utils.send import  send_message
-from config import Colors,Durations
+from config import Type
 from ...services.Rechercher.search.role_intelligent_search import chercher_role_intelligent
 import logging
 
@@ -44,24 +44,24 @@ async def salon_config_acces(ctx,channel,role):
         )
 
         message = f"Les personnes qui ont le rôle {role.mention} peuvent accéder au salon {channel.mention}"
-        await send_message(ctx,message,color=Colors.SUCCESS,temps=Durations.SUCCESS)
+        await send_message(ctx,message,type=Type.SUCCESS)
 
     except discord.Forbidden:
                       
         message = "Désolé, je n'ai pas les permissions nécessaires pour effectuer cette action."
-        await send_message(ctx,message,color=Colors.ERROR , temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.HTTPException:
 
         message = "Discord a rencontré une erreur."
-        await send_message(ctx,message,color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx,message,type=Type.ERROR)
         logger.error(message)
 
     except discord.NotFound:
 
         message = "Désolé, le membre, le rôle ou la ressource demandée est introuvable."
-        await send_message(ctx, message, color=Colors.ERROR ,temps = Durations.ERROR)
+        await send_message(ctx, message, type=Type.ERROR)
         logger.error(message)
 
     
@@ -94,7 +94,7 @@ async def salon_config_acces_multi(ctx,channel,roles):
         
         if roles is None:
             message = "Roles = None"
-            await send_message(ctx,message,color=Colors.ERROR,temps=Durations.ERROR)
+            await send_message(ctx,message,type=Type.ERROR)
             return
         
         logger.warning("➡️✅ Entrée ")
@@ -119,6 +119,6 @@ async def salon_config_acces_multi(ctx,channel,roles):
     except Exception:
     
             message = "Erreur inattendue"
-            await send_message(ctx,message,color=Colors.WARNING,temps = Durations.WARNING)
+            await send_message(ctx,message,type=Type.WARNING)
             logger.exception(message)
     

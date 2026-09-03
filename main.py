@@ -57,8 +57,6 @@ class MonBot(commands.Bot):
             for index ,cogs in enumerate(synced , start= 1):
                 logger.info("Commande synchronisée : %s N° :%s",cogs,index)
                 
-        except discord.HTTPException:
-            logger.error("Discord a refusé la synchronisation")
 
         except Exception:
             logger.exception("Erreur inconnue pendant la synchronisation")
